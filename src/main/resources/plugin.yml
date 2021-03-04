@@ -1,0 +1,16 @@
+name: VyntoCore
+version: 1.0.0
+main: me.vynto.core.VyntoCore
+authors: ["Harrison", "Josh", "Paul"]
+api-version: 1.16
+
+commands:
+  hat:
+    usage: /hat
+    description: Wear the item you're currently holding as a hat.
+    permission: vynto.core.hat
+
+permissions:
+  vynto.core.hat:
+    description: Gain access to the /hat command
+    default: op
