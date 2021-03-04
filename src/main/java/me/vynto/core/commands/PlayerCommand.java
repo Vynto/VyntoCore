@@ -62,13 +62,4 @@ public class PlayerCommand implements CommandExecutor {
 
         return true;
     }
-
-    private boolean hasPermission(Player player, String permission) {
-        if (!player.hasPermission("core.vynto." + permission)) {
-            player.sendMessage(Utils.cc(prefix + "&cYou do not have permission to run that command!"));
-            return false;
-        }
-        return true;
-    }
-
 }
