@@ -9,18 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerCommand implements CommandExecutor {
-
-    private final VyntoCore plugin;
-    private final String prefix;
-
-    public PlayerCommand(VyntoCore instance) {
-        this.plugin = instance;
-        this.prefix = "&8[&6Vynto&8] ";
-    }
-
+public class HatCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        String prefix =  "&8[&6Vynto&8] ";
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(Utils.cc(prefix + "&cThe console cannot use this command."));

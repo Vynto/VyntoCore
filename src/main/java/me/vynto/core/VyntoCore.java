@@ -1,6 +1,6 @@
 package me.vynto.core;
 
-import me.vynto.core.commands.PlayerCommand;
+import me.vynto.core.commands.HatCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class VyntoCore extends JavaPlugin {
@@ -12,7 +12,7 @@ public class VyntoCore extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("hat").setExecutor(new PlayerCommand(this));
+        getCommand("hat").setExecutor(new HatCommand());
     }
 
     private void registerTabCompleters() {
