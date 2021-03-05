@@ -1,7 +1,7 @@
 name: VyntoCore
 version: 1.0.0
 main: me.vynto.core.VyntoCore
-authors: ["Harrison", "Josh", "Paul"]
+authors: ["Harrison", "Josh"]
 api-version: 1.16
 
 commands:
@@ -13,4 +13,7 @@ commands:
 permissions:
   vynto.core.hat:
     description: Gain access to the /hat command
+    default: op
+  vynto.core.hat.others:
+    description: Use the /hat command on others
     default: op
