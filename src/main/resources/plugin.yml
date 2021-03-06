@@ -30,6 +30,11 @@ commands:
     aliases: ["craftingtable"]
     description: Open a workbench on a player.
     permission: vynto.core.workbench
+  book:
+    usage: /book
+    aliases: [ "craftingtable" ]
+    description: Open the book editor settings.
+    permission: vynto.core.book
 
 permissions:
   vynto.core.hat:
@@ -62,6 +67,18 @@ permissions:
   vynto.core.workbench:
     description: Gain access to the workbench command
     default: op
-  vynto.core.workbench.others:
-    description: Use the /workbench command on others
+  vynto.core.book.*:
+    description: Use all /book commands
+    default: op
+  vynto.core.book.title:
+    description: Use the /book title command
+    default: op
+  vynto.core.book.author:
+    description: Use the /book author command
+    default: op
+  vynto.core.book.copy:
+    description: Use the /book copy command
+    default: op
+  vynto.core.book.copy.share:
+    description: Use the /book copy command to share a book
     default: op
