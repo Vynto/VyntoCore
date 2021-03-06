@@ -17,6 +17,10 @@ commands:
     usage: /fly
     description: Toggle your flying
     permission: vynto.core.fly
+  heal:
+    usage: /heal
+    description: Heal a player.
+    permission: vynto.core.heal
 
 permissions:
   vynto.core.hat:
@@ -33,4 +37,10 @@ permissions:
     default: op
   vynto.core.fly.others:
     description: Use the /fly command on others
+    default: op
+  vynto.core.heal:
+    description: Gain access to the heal command
+    default: op
+  vynto.core.heal.other:
+    description: Use the /heal command on others
     default: op
