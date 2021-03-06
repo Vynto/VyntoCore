@@ -13,6 +13,10 @@ commands:
     usage: /skull
     description: Give yourself a specific player skull.
     permission: vynto.core.skull
+  fly:
+    usage: /fly
+    description: Toggle your flying
+    permission: vynto.core.fly
 
 permissions:
   vynto.core.hat:
@@ -23,4 +27,10 @@ permissions:
     default: op
   vynto.core.skull:
     description: Gain access to the /skull command
+    default: op
+  vynto.core.fly:
+    description: Gain access to the /fly command
+    default: op
+  vynto.core.fly.others:
+    description: Use the /fly command on others
     default: op

@@ -27,7 +27,7 @@ public class SkullCommand implements CommandExecutor {
             return true;
         }
 
-        if (!utils.hasPermission((Player) sender, "skull")) return true;
+        if (!utils.hasPermission(sender, "skull")) return true;
 
         Player player = (Player) sender;
         ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1);

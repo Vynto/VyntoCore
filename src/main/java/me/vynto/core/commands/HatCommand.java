@@ -29,7 +29,7 @@ public class HatCommand implements CommandExecutor {
         Player player;
 
         if (args.length == 0) {
-            if (!utils.hasPermission((Player) sender, "hat")) return true;
+            if (!utils.hasPermission(sender, "hat")) return true;
             player = (Player) sender;
         }
         else {

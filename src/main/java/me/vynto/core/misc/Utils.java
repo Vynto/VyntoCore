@@ -1,7 +1,7 @@
 package me.vynto.core.misc;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 
 public class Utils {
     private String prefix;
@@ -10,9 +10,9 @@ public class Utils {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    public boolean hasPermission(Player player, String permission) {
-        if (!player.hasPermission("vynto.core." + permission)) {
-            player.sendMessage(cc(getPrefix() + "&cYou do not have permission to run that command!"));
+    public boolean hasPermission(CommandSender sender, String permission) {
+        if (!sender.hasPermission("vynto.core." + permission)) {
+            sender.sendMessage(cc(getPrefix() + "&cYou do not have permission to run that command!"));
             return false;
         }
         return true;
