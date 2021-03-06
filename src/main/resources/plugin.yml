@@ -21,6 +21,11 @@ commands:
     usage: /heal
     description: Heal a player.
     permission: vynto.core.heal
+  feed:
+    usage: /feed
+    description: Feed a player.
+    permission: vynto.core.feed
+
 
 permissions:
   vynto.core.hat:
@@ -43,4 +48,10 @@ permissions:
     default: op
   vynto.core.heal.other:
     description: Use the /heal command on others
+    default: op
+  vynto.core.feed:
+    description: Gain access to the feed command
+    default: op
+  vynto.core.feed.others:
+    description: Use the /feed command on others
     default: op

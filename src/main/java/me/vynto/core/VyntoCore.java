@@ -1,9 +1,6 @@
 package me.vynto.core;
 
-import me.vynto.core.commands.FlyCommand;
-import me.vynto.core.commands.HatCommand;
-import me.vynto.core.commands.HealCommand;
-import me.vynto.core.commands.SkullCommand;
+import me.vynto.core.commands.*;
 import me.vynto.core.misc.Utils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +22,7 @@ public class VyntoCore extends JavaPlugin {
         getCommand("skull").setExecutor(new SkullCommand(this));
         getCommand("fly").setExecutor(new FlyCommand(this));
         getCommand("heal").setExecutor(new HealCommand(this));
+        getCommand("feed").setExecutor(new FeedCommand(this));
     }
 
     private void registerTabCompleters() {
