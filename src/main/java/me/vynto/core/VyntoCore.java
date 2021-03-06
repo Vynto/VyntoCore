@@ -2,6 +2,7 @@ package me.vynto.core;
 
 import me.vynto.core.commands.*;
 import me.vynto.core.misc.Utils;
+import me.vynto.core.tabcompleters.BookTabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class VyntoCore extends JavaPlugin {
@@ -29,9 +30,7 @@ public class VyntoCore extends JavaPlugin {
     }
 
     private void registerTabCompleters() {
-        // register tab completers with:
-        // getCommand("COMMANDNAME").setTabCompleter(new COMMANDNAMETab());
-        // I believe a new one has to be made for every command otherwise it gets messy
+        getCommand("book").setTabCompleter(new BookTabCompleter());
     }
 
     public Utils getUtils() {
