@@ -2,7 +2,6 @@ package me.vynto.core.commands;
 
 import me.vynto.core.VyntoCore;
 import me.vynto.core.misc.Utils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.jetbrains.annotations.NotNull;
 
 public class SkullCommand implements CommandExecutor {
     private VyntoCore plugin;
@@ -21,7 +19,6 @@ public class SkullCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         Utils utils = plugin.getUtils();
         String prefix = utils.getPrefix();
 
@@ -43,17 +40,15 @@ public class SkullCommand implements CommandExecutor {
 
         if (args.length == 0) {
             meta.setOwningPlayer(player);
-            player.sendMessage(utils.cc(prefix + "&aYou have recieved &e" + player.getDisplayName() + "'s &askull"));
+            player.sendMessage(utils.cc(prefix + "&aYou have received &e" + player.getDisplayName() + "'s &askull"));
         }
         else {
             meta.setOwner(args[0]);
-            player.sendMessage(utils.cc(prefix + "&aYou have recieved &e" + args[0] + "'s &askull"));
+            player.sendMessage(utils.cc(prefix + "&aYou have received &e" + args[0] + "'s &askull"));
         }
-
         item.setItemMeta(meta);
 
         player.getInventory().addItem(item);
-
         return true;
     }
 }
