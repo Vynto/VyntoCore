@@ -33,10 +33,7 @@ public class SkullCommand implements CommandExecutor {
         ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta meta = (SkullMeta) item.getItemMeta();
 
-        if (player.getInventory().firstEmpty() == -1) {
-            player.sendMessage(utils.cc(prefix + "&cYou do not have enough inventory space"));
-            return true;
-        }
+        if (utils.hasFullInventory(player)) return true;
 
         if (args.length == 0) {
             meta.setOwningPlayer(player);

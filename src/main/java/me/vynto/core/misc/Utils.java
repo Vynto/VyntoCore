@@ -2,6 +2,7 @@ package me.vynto.core.misc;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class Utils {
     private String prefix;
@@ -16,6 +17,15 @@ public class Utils {
             return false;
         }
         return true;
+    }
+
+    public boolean hasFullInventory(Player player) {
+        if (player.getInventory().firstEmpty() == -1) {
+            player.sendMessage(cc(prefix + "&cYou do not have enough inventory space"));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getPrefix() {
