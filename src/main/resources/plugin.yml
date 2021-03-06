@@ -9,6 +9,10 @@ commands:
     usage: /hat
     description: Wear the item you're currently holding as a hat.
     permission: vynto.core.hat
+  skull:
+    usage: /skull
+    description: Give yourself a specific player skull.
+    permission: vynto.core.skull
 
 permissions:
   vynto.core.hat:
@@ -16,4 +20,7 @@ permissions:
     default: op
   vynto.core.hat.others:
     description: Use the /hat command on others
+    default: op
+  vynto.core.skull:
+    description: Gain access to the /skull command
     default: op
