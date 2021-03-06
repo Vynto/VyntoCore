@@ -32,9 +32,12 @@ commands:
     permission: vynto.core.workbench
   book:
     usage: /book
-    aliases: [ "craftingtable" ]
     description: Open the book editor settings.
     permission: vynto.core.book
+  repair:
+    usage: /repair
+    description: Repair a player's damaged tool.
+    permission: vynto.core.repair
 
 permissions:
   vynto.core.hat:
@@ -81,4 +84,10 @@ permissions:
     default: op
   vynto.core.book.copy.share:
     description: Use the /book copy command to share a book
+    default: op
+  vynto.core.repair:
+    description: Gain access to the /repair command
+    default: op
+  vynto.core.repair.others:
+    description: Use the /repair command on others
     default: op

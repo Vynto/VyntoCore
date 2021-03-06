@@ -12,15 +12,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
 public class BookCommand implements CommandExecutor {
-    private final VyntoCore plugin;
+    private final Utils utils;
 
     public BookCommand(VyntoCore instance) {
-        this.plugin = instance;
+        this.utils = instance.getUtils();
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils utils = plugin.getUtils();
         String prefix = utils.getPrefix();
 
         if (!(sender instanceof Player)) {
@@ -32,15 +31,12 @@ public class BookCommand implements CommandExecutor {
         if (!utils.hasPermission(player, "book")) return true;
 
         if (args.length == 0) {
-            player.sendMessage(utils.cc("&7-- -- -- &6Book Editor &7-- -- --"));
-            player.sendMessage(utils.cc("&e/book title [title]: &6Set the title of your book"));
-            player.sendMessage(utils.cc("&e/book author [author]: &6Set the author of your book"));
-            player.sendMessage(utils.cc("&e/book copy: &6Create a copy of your book"));
-            player.sendMessage(utils.cc("&e/book copy [IGN]: &6Send a copy of your book to the specified player"));
+            sendCommandHelp(player);
         } else {
             ItemStack book = player.getInventory().getItemInMainHand();
             if (!book.getType().equals(Material.WRITTEN_BOOK)) {
                 player.sendMessage(utils.cc(prefix + "&cYou must be holding a &6Signed Book &cto use this command"));
+                player.sendMessage(utils.cc(prefix + "&cUse &6/book &cfor more information"));
                 return true;
             }
             BookMeta meta = (BookMeta) book.getItemMeta();
@@ -64,7 +60,7 @@ public class BookCommand implements CommandExecutor {
                     }
 
                     book.setItemMeta(meta);
-                    player.sendMessage(utils.cc("&aYour book's " + args[0] + " has been updated to " + content.toString()));
+                    player.sendMessage(utils.cc(prefix + "&aYour book's &e" + args[0] + " &ahas been updated to &e" + content.toString()));
                     break;
                 case "copy":
                     if (!utils.hasPermission(player, "book.copy")) return true;
@@ -83,16 +79,24 @@ public class BookCommand implements CommandExecutor {
                     }
 
                     recipient.getInventory().addItem(book.asOne());
-                    player.sendMessage(utils.cc(prefix + "&aYou have been given a copy of &e" + meta.getTitle()));
+                    recipient.sendMessage(utils.cc(prefix + "&aYou have been given a copy of &e" + meta.getTitle()));
                     if (args.length > 1) {
                         player.sendMessage(utils.cc(prefix + "&aYou have given a copy of &e" + meta.getTitle() + " &ato &e" + recipient.getDisplayName()));
                     }
                     break;
                 default:
-                    player.sendMessage(utils.cc(prefix + "&cInvalid book option specified"));
+                    sendCommandHelp(player);
             }
         }
         return true;
+    }
+
+    public void sendCommandHelp(Player player) {
+        player.sendMessage(utils.cc("&7-- -- -- &6Book Editor &7-- -- --"));
+        player.sendMessage(utils.cc("&e/book title [title]: &6Set the title of your book"));
+        player.sendMessage(utils.cc("&e/book author [author]: &6Set the author of your book"));
+        player.sendMessage(utils.cc("&e/book copy: &6Create a copy of your book"));
+        player.sendMessage(utils.cc("&e/book copy [IGN]: &6Send a copy of your book to the specified player"));
     }
 
 }
