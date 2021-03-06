@@ -25,7 +25,11 @@ commands:
     usage: /feed
     description: Feed a player.
     permission: vynto.core.feed
-
+  workbench:
+    usage: /workbench
+    aliases: ["craftingtable"]
+    description: Open a workbench on a player.
+    permission: vynto.core.workbench
 
 permissions:
   vynto.core.hat:
@@ -54,4 +58,10 @@ permissions:
     default: op
   vynto.core.feed.others:
     description: Use the /feed command on others
+    default: op
+  vynto.core.workbench:
+    description: Gain access to the workbench command
+    default: op
+  vynto.core.workbench.others:
+    description: Use the /workbench command on others
     default: op

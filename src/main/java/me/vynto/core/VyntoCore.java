@@ -23,6 +23,7 @@ public class VyntoCore extends JavaPlugin {
         getCommand("fly").setExecutor(new FlyCommand(this));
         getCommand("heal").setExecutor(new HealCommand(this));
         getCommand("feed").setExecutor(new FeedCommand(this));
+        getCommand("workbench").setExecutor(new WorkbenchCommand(this));
     }
 
     private void registerTabCompleters() {
