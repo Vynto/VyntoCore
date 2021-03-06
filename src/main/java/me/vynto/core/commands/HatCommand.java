@@ -41,7 +41,7 @@ public class HatCommand implements CommandExecutor {
             }
         }
 
-        ItemStack hat = player.getInventory().getItemInMainHand().asOne();
+        ItemStack hat = ((Player) sender).getInventory().getItemInMainHand().asOne();
 
         if (hat.getType().equals(Material.AIR)) {
             sender.sendMessage(utils.cc(prefix + "&cYou must be holding an item in order to wear it as a hat"));
@@ -65,7 +65,7 @@ public class HatCommand implements CommandExecutor {
         player.getEquipment().setHelmet(hat);
 
         if (!((Player) sender).getUniqueId().equals(player.getUniqueId())) {
-            sender.sendMessage(utils.cc(prefix + "&e" + player.displayName() + " &ais now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
+            sender.sendMessage(utils.cc(prefix + "&e" + player.getDisplayName() + " &ais now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
         }
         player.sendMessage(utils.cc(prefix + "&aYou are now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
         return true;
