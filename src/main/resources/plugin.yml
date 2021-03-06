@@ -38,6 +38,10 @@ commands:
     usage: /repair
     description: Repair a player's damaged tool.
     permission: vynto.core.repair
+  anvil:
+    usage: /anvil
+    description: Open an anvil on a player.
+    permission: vynto.core.anvil
 
 permissions:
   vynto.core.hat:
@@ -90,4 +94,10 @@ permissions:
     default: op
   vynto.core.repair.others:
     description: Use the /repair command on others
+    default: op
+  vynto.core.anvil:
+    description: Gain access to the /anvil command
+    default: op
+  vynto.core.anvil.others:
+    description: Use the /anvil command on others
     default: op

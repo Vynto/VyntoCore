@@ -27,6 +27,7 @@ public class VyntoCore extends JavaPlugin {
         getCommand("workbench").setExecutor(new WorkbenchCommand(this));
         getCommand("book").setExecutor(new BookCommand(this));
         getCommand("repair").setExecutor(new RepairCommand(this));
+        getCommand("anvil").setExecutor(new AnvilCommand(this));
     }
 
     private void registerTabCompleters() {
