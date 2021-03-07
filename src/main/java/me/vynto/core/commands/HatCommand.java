@@ -1,6 +1,5 @@
 package me.vynto.core.commands;
 
-import me.vynto.core.VyntoCore;
 import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,32 +10,25 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class HatCommand implements CommandExecutor {
-    private VyntoCore plugin;
-
-    public HatCommand(VyntoCore instance) {
-        this.plugin = instance;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils utils = plugin.getUtils();
-        String prefix = utils.getPrefix();
+        String prefix = Utils.getPrefix();
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(utils.cc(prefix + "&cThe console cannot use this command."));
+            sender.sendMessage(Utils.cc(prefix + "&cThe console cannot use this command."));
             return true;
         }
         Player player;
 
         if (args.length == 0) {
-            if (!utils.hasPermission(sender, "hat")) return true;
+            if (!Utils.hasPermission(sender, "hat")) return true;
             player = (Player) sender;
         }
         else {
-            if (!utils.hasPermission((Player) sender, "hat.others")) return true;
+            if (!Utils.hasPermission((Player) sender, "hat.others")) return true;
             player = Bukkit.getPlayer(args[0]);
             if (player == null) {
-                sender.sendMessage(utils.cc(prefix + "&cAn invalid player was specified."));
+                sender.sendMessage(Utils.cc(prefix + "&cAn invalid player was specified."));
                 return true;
             }
         }
@@ -44,7 +36,7 @@ public class HatCommand implements CommandExecutor {
         ItemStack hat = ((Player) sender).getInventory().getItemInMainHand().asOne();
 
         if (hat.getType().equals(Material.AIR)) {
-            sender.sendMessage(utils.cc(prefix + "&cYou must be holding an item in order to wear it as a hat"));
+            sender.sendMessage(Utils.cc(prefix + "&cYou must be holding an item in order to wear it as a hat"));
             return true;
         }
 
@@ -65,9 +57,9 @@ public class HatCommand implements CommandExecutor {
         player.getEquipment().setHelmet(hat);
 
         if (!((Player) sender).getUniqueId().equals(player.getUniqueId())) {
-            sender.sendMessage(utils.cc(prefix + "&e" + player.getDisplayName() + " &ais now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
+            sender.sendMessage(Utils.cc(prefix + "&e" + player.getDisplayName() + " &ais now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
         }
-        player.sendMessage(utils.cc(prefix + "&aYou are now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
+        player.sendMessage(Utils.cc(prefix + "&aYou are now wearing &e" + hat.getI18NDisplayName() + "&a as a hat"));
         return true;
     }
 }

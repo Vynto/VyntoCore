@@ -1,6 +1,5 @@
 package me.vynto.core.commands;
 
-import me.vynto.core.VyntoCore;
 import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -10,35 +9,28 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 public class HealCommand implements CommandExecutor {
-    private VyntoCore plugin;
-
-    public HealCommand(VyntoCore instance) {
-        this.plugin = instance;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils utils = plugin.getUtils();
-        String prefix = utils.getPrefix();
+        String prefix = Utils.getPrefix();
 
         if (!(sender instanceof Player) && args.length == 0) {
-            sender.sendMessage(utils.cc(prefix + "&cThe console cannot heal itself."));
+            sender.sendMessage(Utils.cc(prefix + "&cThe console cannot heal itself."));
             return true;
         }
 
-        if (!utils.hasPermission(sender, "heal")) return true;
+        if (!Utils.hasPermission(sender, "heal")) return true;
 
         Player player;
         if (args.length == 0) {
             player = (Player) sender;
         }
         else {
-            if (!utils.hasPermission(sender, "heal.others")) return true;
+            if (!Utils.hasPermission(sender, "heal.others")) return true;
             player = Bukkit.getPlayer(args[0]);
         }
 
         if (player == null) {
-            sender.sendMessage(utils.cc(prefix + "&cAn invalid player was specified."));
+            sender.sendMessage(Utils.cc(prefix + "&cAn invalid player was specified."));
             return true;
         }
 
@@ -53,9 +45,9 @@ public class HealCommand implements CommandExecutor {
         }
 
         if (args.length > 0) {
-            sender.sendMessage(utils.cc(prefix + "&e" + player.getDisplayName() + " &ahas been healed"));
+            sender.sendMessage(Utils.cc(prefix + "&e" + player.getDisplayName() + " &ahas been healed"));
         }
-        player.sendMessage(utils.cc(prefix + "&aYou have been healed"));
+        player.sendMessage(Utils.cc(prefix + "&aYou have been healed"));
         return true;
     }
 }

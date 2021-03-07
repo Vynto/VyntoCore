@@ -1,6 +1,5 @@
 package me.vynto.core.commands;
 
-import me.vynto.core.VyntoCore;
 import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,35 +13,28 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class RepairCommand implements CommandExecutor {
-    private final VyntoCore plugin;
-
-    public RepairCommand(VyntoCore instance) {
-        this.plugin = instance;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Utils utils = plugin.getUtils();
-        String prefix = utils.getPrefix();
+        String prefix = Utils.getPrefix();
 
         if (!(sender instanceof Player) && args.length == 0) {
-            sender.sendMessage(utils.cc(prefix + "&cThe console has no tools to repair."));
+            sender.sendMessage(Utils.cc(prefix + "&cThe console has no tools to repair."));
             return true;
         }
 
-        if (!utils.hasPermission(sender, "repair")) return true;
+        if (!Utils.hasPermission(sender, "repair")) return true;
 
         Player player;
         if (args.length == 0) {
             player = (Player) sender;
         }
         else {
-            if (!utils.hasPermission(sender, "repair.others")) return true;
+            if (!Utils.hasPermission(sender, "repair.others")) return true;
             player = Bukkit.getPlayer(args[0]);
         }
 
         if (player == null) {
-            sender.sendMessage(utils.cc(prefix + "&cAn invalid player was specified."));
+            sender.sendMessage(Utils.cc(prefix + "&cAn invalid player was specified."));
             return true;
         }
 
@@ -50,7 +42,7 @@ public class RepairCommand implements CommandExecutor {
 
         Material tool = hand.getType();
         if (tool.getMaxDurability() == 0) {
-            sender.sendMessage(utils.cc(prefix + "&cThat item has no durability and therefore cannot be repaired."));
+            sender.sendMessage(Utils.cc(prefix + "&cThat item has no durability and therefore cannot be repaired."));
             return true;
         }
 
@@ -59,9 +51,9 @@ public class RepairCommand implements CommandExecutor {
         hand.setItemMeta((ItemMeta) toolMeta);
 
         if (args.length > 0) {
-            sender.sendMessage(utils.cc(prefix + "&aYou have repaired the &e" + hand.getI18NDisplayName() + " &abelonging to &e" + player.getDisplayName()));
+            sender.sendMessage(Utils.cc(prefix + "&aYou have repaired the &e" + hand.getI18NDisplayName() + " &abelonging to &e" + player.getDisplayName()));
         }
-        player.sendMessage(utils.cc(prefix + "&aYour &e" + hand.getI18NDisplayName() + "&a has been repaired"));
+        player.sendMessage(Utils.cc(prefix + "&aYour &e" + hand.getI18NDisplayName() + "&a has been repaired"));
         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_USE, 0.5f, 1f);
         return true;
     }

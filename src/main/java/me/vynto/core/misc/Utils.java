@@ -5,13 +5,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Utils {
-    private String prefix;
+    private static final String prefix = "&8[&6Vynto&8] ";
 
-    public String cc(String message) {
+    public static String cc(String message) {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    public boolean hasPermission(CommandSender sender, String permission) {
+    public static boolean hasPermission(CommandSender sender, String permission) {
         if (!sender.hasPermission("vynto.core." + permission)) {
             sender.sendMessage(cc(getPrefix() + "&cYou do not have permission to run that command!"));
             return false;
@@ -19,7 +19,7 @@ public class Utils {
         return true;
     }
 
-    public boolean hasFullInventory(Player player) {
+    public static boolean hasFullInventory(Player player) {
         if (player.getInventory().firstEmpty() == -1) {
             player.sendMessage(cc(prefix + "&cYou do not have enough inventory space"));
             return true;
@@ -28,11 +28,7 @@ public class Utils {
         }
     }
 
-    public String getPrefix() {
+    public static String getPrefix() {
         return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
     }
 }
