@@ -42,6 +42,11 @@ commands:
     usage: /anvil
     description: Open an anvil on a player.
     permission: vynto.core.anvil
+  gamemode:
+    usage: /gamemode [gamemode]
+    description: Change your gamemode
+    permission: vynto.core.gamemode
+    aliases: ["gm", "gmc", "gma", "gmsp", "gms"]
 
 permissions:
   vynto.core.hat:
@@ -100,4 +105,19 @@ permissions:
     default: op
   vynto.core.anvil.others:
     description: Use the /anvil command on others
+    default: op
+  vynto.core.gamemode.creative:
+    description: Set your gamemode to creative
+    default: op
+  vynto.core.gamemode.adventure:
+    description: Set your gamemode to adventure
+    default: op
+  vynto.core.gamemode.survival:
+    description: Set your gamemode to survival
+    default: op
+  vynto.core.gamemode.spectator:
+    description: Set your gamemode to spectator
+    default: op
+  vynto.core.gamemode.others:
+    description: Use the /gamemode command on others
     default: op
