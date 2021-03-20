@@ -62,6 +62,10 @@ commands:
     description: Broadcast a message to the entire server.
     permission: vynto.core.broadcast
     aliases: [ "bc" ]
+  online:
+    usage: /online
+    description: Check how many players are online or if a specific player is online.
+    permission: vynto.core.online
 
 permissions:
   vynto.core.hat:
@@ -147,4 +151,10 @@ permissions:
     default: op
   vynto.core.broadcast:
     description: Use the /bc command
+    default: op
+  vynto.core.online:
+    description: Use the /online command
+    default: op
+  vynto.core.online.others:
+    description: Use the /online command on others
     default: op

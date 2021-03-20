@@ -12,12 +12,12 @@ public class BroadcastCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         String prefix = Utils.getPrefix();
 
+        if (!Utils.hasPermission(sender, "broadcast")) return true;
+
         if (args.length == 0) {
             sender.sendMessage(Utils.cc(prefix + "&cUsage: &e/broadcast <message ...>"));
             return true;
         }
-
-        if (!Utils.hasPermission(sender, "broadcast")) return true;
 
         Bukkit.getServer().broadcastMessage(Utils.cc("&8[&dBroadcast&8] &7" + StringUtils.join(args, " ")));
         return true;
