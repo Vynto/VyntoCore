@@ -44,9 +44,19 @@ commands:
     permission: vynto.core.anvil
   gamemode:
     usage: /gamemode [gamemode]
-    description: Change your gamemode
+    description: Change your gamemode.
     permission: vynto.core.gamemode
     aliases: ["gm", "gmc", "gma", "gmsp", "gms"]
+  msg:
+    usage: /msg <player> <msg ...>
+    description: Message another player.
+    permission: vynto.core.message
+    aliases: ["pm"]
+  r:
+    usage: /r <msg ...>
+    description: Reply to a player.
+    permission: vynto.core.reply
+    aliases: [ "reply" ]
 
 permissions:
   vynto.core.hat:
@@ -120,4 +130,13 @@ permissions:
     default: op
   vynto.core.gamemode.others:
     description: Use the /gamemode command on others
+    default: op
+  vynto.core.message:
+    description: Use the /msg command
+    default: op
+  vynto.core.message.console:
+    description: Use the /msg command with the console
+    default: op
+  vynto.core.reply:
+    description: Use the /r command
     default: op
