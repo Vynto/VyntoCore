@@ -57,6 +57,11 @@ commands:
     description: Reply to a player.
     permission: vynto.core.reply
     aliases: [ "reply" ]
+  broadcast:
+    usage: /broadcast <msg ...>
+    description: Broadcast a message to the entire server.
+    permission: vynto.core.broadcast
+    aliases: [ "bc" ]
 
 permissions:
   vynto.core.hat:
@@ -139,4 +144,7 @@ permissions:
     default: op
   vynto.core.reply:
     description: Use the /r command
+    default: op
+  vynto.core.broadcast:
+    description: Use the /bc command
     default: op
