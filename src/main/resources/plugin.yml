@@ -56,16 +56,25 @@ commands:
     usage: /r <msg ...>
     description: Reply to a player.
     permission: vynto.core.reply
-    aliases: [ "reply" ]
+    aliases: ["reply"]
   broadcast:
     usage: /broadcast <msg ...>
     description: Broadcast a message to the entire server.
     permission: vynto.core.broadcast
-    aliases: [ "bc" ]
+    aliases: ["bc"]
   online:
     usage: /online
     description: Check how many players are online or if a specific player is online.
     permission: vynto.core.online
+  tp:
+    usage: /tp <player>
+    description: Teleport to another player.
+    permission: vynto.core.teleport.players
+    aliases: ["teleport"]
+  tppos:
+    usage: /tppos <x> <y> <z>
+    description: Teleport to a location.
+    permission: vynto.core.teleport.position
 
 permissions:
   vynto.core.hat:
@@ -157,4 +166,16 @@ permissions:
     default: op
   vynto.core.online.others:
     description: Use the /online command on others
+    default: op
+  vynto.core.teleport.players:
+    description: Use the /tp command
+    default: op
+  vynto.core.teleport.players.others:
+    description: Use the /tp command on others
+    default: op
+  vynto.core.teleport.position:
+    description: Use the /tppos command
+    default: op
+  vynto.core.teleport.position.others:
+    description: Use the /tppos command on others
     default: op

@@ -33,6 +33,8 @@ public class VyntoCore extends JavaPlugin {
         getCommand("reply").setExecutor(new ReplyCommand(this));
         getCommand("broadcast").setExecutor(new BroadcastCommand());
         getCommand("online").setExecutor(new OnlineCommand());
+        getCommand("tp").setExecutor(new TeleportCommand());
+        getCommand("tppos").setExecutor(new TeleportPositionCommand());
     }
 
     private void registerTabCompleters() {
