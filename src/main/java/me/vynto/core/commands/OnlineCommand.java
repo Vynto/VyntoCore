@@ -23,7 +23,7 @@ public class OnlineCommand implements CommandExecutor {
             if (!Utils.hasPermission(sender, "online.others")) return true;
 
             OfflinePlayer player = Bukkit.getOfflinePlayer(args[0]);
-            if (Bukkit.getServer().getOfflinePlayer(args[0]).getLastPlayed() == 0) {
+            if (player.getLastPlayed() == 0 && !player.isOnline()) {
                 sender.sendMessage(Utils.cc(prefix + "&cInvalid Player"));
                 return true;
             }

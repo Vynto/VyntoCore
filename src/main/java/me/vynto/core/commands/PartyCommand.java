@@ -4,6 +4,8 @@ import me.vynto.core.VyntoCore;
 import me.vynto.core.base.Party;
 import me.vynto.core.base.PartyManager;
 import me.vynto.core.misc.Utils;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -102,7 +104,10 @@ public class PartyCommand implements CommandExecutor {
                     }
 
                     party.addInvitee(invitee.getUniqueId());
-                    invitee.sendMessage(Utils.cc(prefix + "&6You have been invited to &d" + player.getName() + "'s &6party"));
+
+                    TextComponent message = new TextComponent(Utils.cc(prefix + "&6You have been invited to &d" + player.getName() + "'s &6party. &dCLICK HERE &6to join."));
+                    message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/party accept " + player.getName()));
+                    invitee.spigot().sendMessage(message);
 
                     party.sendMessage("&d" + player.getName() + " &6has invited &d" + invitee.getName() + " &6to the party");
                 }
@@ -284,7 +289,7 @@ public class PartyCommand implements CommandExecutor {
                     party.setHost(pMember.getUniqueId());
 
                     player.sendMessage(Utils.cc(prefix + "&6You are no longer the party host"));
-                    pMember.sendMessage(Utils.cc(partyPrefix + "&d" + player.getName() + " &6 has made you the party host"));
+                    pMember.sendMessage(Utils.cc(partyPrefix + "&d" + player.getName() + " &6has made you the party host"));
                     party.sendMessage(Utils.cc("&d" + pMember.getName() + " &6has been promoted to party host"));
                 }
                 else {
