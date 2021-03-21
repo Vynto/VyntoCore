@@ -1,21 +1,27 @@
 package me.vynto.core;
 
+import me.vynto.core.base.PartyManager;
 import me.vynto.core.commands.*;
+import me.vynto.core.listeners.PlayerJoin;
+import me.vynto.core.listeners.PlayerLeave;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class VyntoCore extends JavaPlugin {
 
     private Map<String, String> messageHistory;
+    private PartyManager partyManager;
 
     @Override
     public void onEnable() {
-        registerCommands();
-        registerTabCompleters();
+        partyManager = new PartyManager();
         messageHistory = new HashMap<>();
+
+        registerCommands();
+        registerEvents();
+        registerTabCompleters();
     }
 
     private void registerCommands() {
@@ -35,6 +41,12 @@ public class VyntoCore extends JavaPlugin {
         getCommand("online").setExecutor(new OnlineCommand());
         getCommand("tp").setExecutor(new TeleportCommand());
         getCommand("tppos").setExecutor(new TeleportPositionCommand());
+        getCommand("party").setExecutor(new PartyCommand(this));
+    }
+
+    private void registerEvents() {
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerLeave(this), this);
     }
 
     private void registerTabCompleters() {
@@ -43,5 +55,9 @@ public class VyntoCore extends JavaPlugin {
 
     public Map<String, String> getMessageHistory() {
         return messageHistory;
+    }
+
+    public PartyManager getPartyManager() {
+        return partyManager;
     }
 }

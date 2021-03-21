@@ -75,6 +75,11 @@ commands:
     usage: /tppos <x> <y> <z>
     description: Teleport to a location.
     permission: vynto.core.teleport.position
+  party:
+    usage: /party
+    description: Interact with parties.
+    permission: vynto.core.party
+    aliases: ["p", "pc"]
 
 permissions:
   vynto.core.hat:
@@ -178,4 +183,10 @@ permissions:
     default: op
   vynto.core.teleport.position.others:
     description: Use the /tppos command on others
+    default: op
+  vynto.core.party:
+    description: Use the /party commands
+    default: op
+  vynto.core.party.create:
+    description: Use the /party create command
     default: op
