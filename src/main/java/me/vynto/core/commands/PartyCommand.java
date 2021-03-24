@@ -5,6 +5,8 @@ import me.vynto.core.base.Party;
 import me.vynto.core.base.PartyManager;
 import me.vynto.core.misc.Utils;
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -107,6 +109,9 @@ public class PartyCommand implements CommandExecutor {
 
                     TextComponent message = new TextComponent(Utils.cc(prefix + "&6You have been invited to &d" + player.getName() + "'s &6party. &dCLICK HERE &6to join."));
                     message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/party accept " + player.getName()));
+                    message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                            new ComponentBuilder("Click to join the party").create()
+                    ));
                     invitee.spigot().sendMessage(message);
 
                     party.sendMessage("&d" + player.getName() + " &6has invited &d" + invitee.getName() + " &6to the party");

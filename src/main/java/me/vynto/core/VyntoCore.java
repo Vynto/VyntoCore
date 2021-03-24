@@ -11,13 +11,13 @@ import java.util.Map;
 
 public class VyntoCore extends JavaPlugin {
 
-    private Map<String, String> messageHistory;
+    private Map<String, String> recipientHistory;
     private PartyManager partyManager;
 
     @Override
     public void onEnable() {
         partyManager = new PartyManager();
-        messageHistory = new HashMap<>();
+        recipientHistory = new HashMap<>();
 
         registerCommands();
         registerEvents();
@@ -53,8 +53,8 @@ public class VyntoCore extends JavaPlugin {
         getCommand("book").setTabCompleter(new BookCommand());
     }
 
-    public Map<String, String> getMessageHistory() {
-        return messageHistory;
+    public Map<String, String> getRecipientHistory() {
+        return recipientHistory;
     }
 
     public PartyManager getPartyManager() {

@@ -28,12 +28,12 @@ public class ReplyCommand implements CommandExecutor {
 
         if (!Utils.hasPermission(sender, "reply")) return true;
 
-        if (!plugin.getMessageHistory().containsKey(sender.getName())) {
+        if (!plugin.getRecipientHistory().containsKey(sender.getName())) {
             sender.sendMessage(Utils.cc(prefix + "&cThere is nobody to reply to!"));
             return true;
         }
 
-        Bukkit.getServer().dispatchCommand(sender, "msg " + plugin.getMessageHistory().get(sender.getName()) + " " + StringUtils.join(args, " "));
+        Bukkit.getServer().dispatchCommand(sender, "msg " + plugin.getRecipientHistory().get(sender.getName()) + " " + StringUtils.join(args, " "));
         return true;
     }
 }

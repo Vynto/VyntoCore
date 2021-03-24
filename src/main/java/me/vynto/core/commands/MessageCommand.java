@@ -42,7 +42,7 @@ public class MessageCommand implements CommandExecutor {
             sender.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", "CONSOLE")));
             Bukkit.getConsoleSender().sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", "CONSOLE")));
 
-            plugin.getMessageHistory().put("CONSOLE", sender.getName());
+            plugin.getRecipientHistory().put("CONSOLE", sender.getName());
             return true;
         }
         else if (Bukkit.getServer().getOfflinePlayer(args[0]).getLastPlayed() != 0 && !Bukkit.getServer().getOfflinePlayer(args[0]).isOnline()) {
@@ -61,7 +61,7 @@ public class MessageCommand implements CommandExecutor {
         sender.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", recipient.getName())));
         recipient.sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", sender.getName())));
 
-        plugin.getMessageHistory().put(recipient.getName(), sender.getName());
+        plugin.getRecipientHistory().put(recipient.getName(), sender.getName());
         return true;
     }
 }
