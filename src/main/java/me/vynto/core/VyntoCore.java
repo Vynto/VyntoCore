@@ -42,6 +42,8 @@ public class VyntoCore extends JavaPlugin {
         getCommand("tp").setExecutor(new TeleportCommand());
         getCommand("tppos").setExecutor(new TeleportPositionCommand());
         getCommand("party").setExecutor(new PartyCommand(this));
+        getCommand("enderchest").setExecutor(new EnderChestCommand());
+        getCommand("invsee").setExecutor(new InventoryViewCommand());
     }
 
     private void registerEvents() {
@@ -51,6 +53,8 @@ public class VyntoCore extends JavaPlugin {
 
     private void registerTabCompleters() {
         getCommand("book").setTabCompleter(new BookCommand());
+        // TODO add tab completers for party
+        // TODO add tab completers for gamemode
     }
 
     public Map<String, String> getRecipientHistory() {

@@ -80,6 +80,15 @@ commands:
     description: Interact with parties.
     permission: vynto.core.party
     aliases: ["p", "pc"]
+  enderchest:
+    usage: /enderchest
+    description: Open your enderchest or the enderchest of others.
+    permission: vynto.core.enderchest
+    aliases: [ "ec" ]
+  invsee:
+    usage: /invsee <player>
+    description: Open your inventory of others.
+    permission: vynto.core.invsee
 
 permissions:
   vynto.core.hat:
@@ -189,4 +198,13 @@ permissions:
     default: op
   vynto.core.party.create:
     description: Use the /party create command
+    default: op
+  vynto.core.enderchest:
+    description: Use the /enderchest command
+    default: op
+  vynto.core.enderchest.others:
+    description: Use the /enderchest command on others to view or modify their enderchest
+    default: op
+  vynto.core.inventory:
+    description: Use the /invsee command to view or modify player inventories
     default: op
