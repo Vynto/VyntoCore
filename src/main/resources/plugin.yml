@@ -89,6 +89,14 @@ commands:
     usage: /invsee <player>
     description: Open your inventory of others.
     permission: vynto.core.invsee
+  border:
+    usage: /border <radius> <player|all>
+    description: Create a world border from your location using the specified radius.
+    permission: vynto.core.border
+  playertag:
+    usage: /playertag <colour>
+    description: Set your player tag colour.
+    permission: vynto.core.playertag
 
 permissions:
   vynto.core.hat:
@@ -207,4 +215,10 @@ permissions:
     default: op
   vynto.core.inventory:
     description: Use the /invsee command to view or modify player inventories
+    default: op
+  vynto.core.border:
+    description: Use the /border command
+    default: op
+  vynto.core.playertag:
+    description: Use the /playertag command
     default: op
