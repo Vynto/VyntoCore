@@ -2,9 +2,11 @@ package me.vynto.core;
 
 import me.vynto.core.base.PartyManager;
 import me.vynto.core.commands.*;
+import me.vynto.core.listeners.ChatHandler;
 import me.vynto.core.listeners.InventoryListener;
 import me.vynto.core.listeners.PlayerJoin;
 import me.vynto.core.listeners.PlayerLeave;
+import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,12 +24,16 @@ public class VyntoCore extends JavaPlugin {
 
     private Map<String, String> recipientHistory;
     private PartyManager partyManager;
+    private String chatPrefix;
 
     private File data;
     private FileConfiguration dataConfig;
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        setChatPrefix();
+
         partyManager = new PartyManager();
         recipientHistory = new HashMap<>();
 
@@ -62,7 +68,7 @@ public class VyntoCore extends JavaPlugin {
         getCommand("msg").setExecutor(new MessageCommand(this));
         getCommand("reply").setExecutor(new ReplyCommand(this));
         getCommand("broadcast").setExecutor(new BroadcastCommand());
-        getCommand("online").setExecutor(new OnlineCommand());
+        getCommand("online").setExecutor(new OnlineCommand(this));
         getCommand("tp").setExecutor(new TeleportCommand());
         getCommand("tppos").setExecutor(new TeleportPositionCommand());
         getCommand("party").setExecutor(new PartyCommand(this));
@@ -70,12 +76,14 @@ public class VyntoCore extends JavaPlugin {
         getCommand("invsee").setExecutor(new InventoryViewCommand());
 //        getCommand("border").setExecutor(new BorderCommand());
         getCommand("playertag").setExecutor(new TagCommand(this));
+        getCommand("nickname").setExecutor(new NicknameCommand(this));
     }
 
     private void registerEvents() {
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new PlayerLeave(this), this);
         getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
+        getServer().getPluginManager().registerEvents(new ChatHandler(this), this);
     }
 
     private void registerTabCompleters() {
@@ -159,5 +167,13 @@ public class VyntoCore extends JavaPlugin {
 
     public PartyManager getPartyManager() {
         return partyManager;
+    }
+
+    private void setChatPrefix() {
+        chatPrefix = Utils.cc(getConfig().getString("chatPrefix", "&f[&2Global&f] "));
+    }
+
+    public String getChatPrefix() {
+        return chatPrefix;
     }
 }

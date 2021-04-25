@@ -97,6 +97,11 @@ commands:
     usage: /playertag <colour>
     description: Set your player tag colour.
     permission: vynto.core.playertag
+  nickname:
+    usage: /nickname <player> <nickname>
+    description: Set a player's nickname.
+    permission: vynto.core.nickname
+    aliases: [ "nick" ]
 
 permissions:
   vynto.core.hat:
@@ -221,4 +226,10 @@ permissions:
     default: op
   vynto.core.playertag:
     description: Use the /playertag command
+    default: op
+  vynto.core.nickname:
+    description: Use the /nickname command
+    default: op
+  vynto.core.colour:
+    description: Use colour in chat
     default: op

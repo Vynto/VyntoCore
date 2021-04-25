@@ -5,6 +5,7 @@ import me.vynto.core.base.Party;
 import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +21,10 @@ public class PlayerLeave implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
+        // Log Last Online
+        setPlayerDataValue(player, "lastOnline", System.currentTimeMillis());
+
+        // Parties
         Party party = plugin.getPartyManager().getPlayerParty(player.getUniqueId());
         if (party != null) {
             party.sendMessage(Utils.cc("&d" + player.getName() + " &6has gone &coffline"));
@@ -41,5 +46,14 @@ public class PlayerLeave implements Listener {
                 }
             }, 6000);
         }
+    }
+
+    private void setPlayerDataValue(Player player, String key, Object value) {
+        FileConfiguration config = plugin.getData();
+
+        config.set("players." + player.getUniqueId().toString() + "." + key, value);
+
+        plugin.saveData();
+        plugin.reloadData();
     }
 }
