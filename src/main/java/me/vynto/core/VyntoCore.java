@@ -39,12 +39,13 @@ public class VyntoCore extends JavaPlugin {
         registerCommands();
         registerEvents();
         registerTabCompleters();
-        registerPlayerTags();
+
+        if (Bukkit.getVersion().contains("1.16.5")) registerPlayerTags();
     }
 
     @Override
     public void onDisable() {
-        unregisterPlayerTags();
+        if (Bukkit.getVersion().contains("1.16.5")) unregisterPlayerTags();
     }
 
     private void registerCommands() {
@@ -67,7 +68,7 @@ public class VyntoCore extends JavaPlugin {
         getCommand("party").setExecutor(new PartyCommand(this));
         getCommand("enderchest").setExecutor(new EnderChestCommand());
         getCommand("invsee").setExecutor(new InventoryViewCommand());
-        getCommand("border").setExecutor(new BorderCommand());
+//        getCommand("border").setExecutor(new BorderCommand());
         getCommand("playertag").setExecutor(new TagCommand(this));
     }
 

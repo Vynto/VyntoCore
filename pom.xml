@@ -13,10 +13,10 @@
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>spigot-repo</id>-->
+<!--            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>-->
+<!--        </repository>-->
     </repositories>
 
     <dependencies>
@@ -26,13 +26,13 @@
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.bukkitmc</groupId>
-            <artifactId>craftbukkitapi</artifactId>
-            <version>1.16.5</version>
-            <scope>system</scope>
-            <systemPath>/Users/Harrison/Documents/Coding/Resources/craftbukkit-1.16.5.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.bukkitmc</groupId>-->
+<!--            <artifactId>craftbukkitapi</artifactId>-->
+<!--            <version>1.16.5</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>/Users/Harrison/Documents/Coding/Resources/craftbukkit-1.16.5.jar</systemPath>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
