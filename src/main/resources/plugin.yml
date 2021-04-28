@@ -102,6 +102,10 @@ commands:
     description: Set a player's nickname.
     permission: vynto.core.nickname
     aliases: [ "nick" ]
+  history:
+    usage: /history
+    description: Get the edit history of the book you're holding.
+    permission: vynto.core.history
 
 permissions:
   vynto.core.hat:
@@ -232,4 +236,7 @@ permissions:
     default: op
   vynto.core.colour:
     description: Use colour in chat
+    default: op
+  vynto.core.history:
+    description: Use the /history command
     default: op

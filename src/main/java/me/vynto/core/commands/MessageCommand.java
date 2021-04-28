@@ -4,6 +4,7 @@ import me.vynto.core.VyntoCore;
 import me.vynto.core.misc.Utils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -39,8 +40,9 @@ public class MessageCommand implements CommandExecutor {
 
         Player recipient = Bukkit.getPlayer(args[0]);
         if (args[0].equalsIgnoreCase("console") && sender.hasPermission("vynto.core.message.console")) {
-            sender.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", "CONSOLE")));
-            Bukkit.getConsoleSender().sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", "CONSOLE")));
+            Player senderPlayer = (Player) sender;
+            senderPlayer.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", "CONSOLE")));
+            Bukkit.getConsoleSender().sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", ChatColor.stripColor(senderPlayer.getDisplayName()))));
 
             plugin.getRecipientHistory().put("CONSOLE", sender.getName());
             return true;
@@ -58,8 +60,15 @@ public class MessageCommand implements CommandExecutor {
             return true;
         }
 
-        sender.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", recipient.getName())));
-        recipient.sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", sender.getName())));
+        sender.sendMessage(Utils.cc(toTemplate.replace("{{RECIPIENT}}", ChatColor.stripColor(recipient.getDisplayName()))));
+
+        if (sender instanceof Player) {
+            Player senderPlayer = (Player) sender;
+            recipient.sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", ChatColor.stripColor(senderPlayer.getDisplayName()))));
+        }
+        else {
+            recipient.sendMessage(Utils.cc(fromTemplate.replace("{{SENDER}}", sender.getName())));
+        }
 
         plugin.getRecipientHistory().put(recipient.getName(), sender.getName());
         return true;

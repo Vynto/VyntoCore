@@ -2,10 +2,7 @@ package me.vynto.core;
 
 import me.vynto.core.base.PartyManager;
 import me.vynto.core.commands.*;
-import me.vynto.core.listeners.ChatHandler;
-import me.vynto.core.listeners.InventoryListener;
-import me.vynto.core.listeners.PlayerJoin;
-import me.vynto.core.listeners.PlayerLeave;
+import me.vynto.core.listeners.*;
 import me.vynto.core.misc.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -77,6 +74,7 @@ public class VyntoCore extends JavaPlugin {
 //        getCommand("border").setExecutor(new BorderCommand());
         getCommand("playertag").setExecutor(new TagCommand(this));
         getCommand("nickname").setExecutor(new NicknameCommand(this));
+        getCommand("history").setExecutor(new BookHistoryCommand(this));
     }
 
     private void registerEvents() {
@@ -84,6 +82,7 @@ public class VyntoCore extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerLeave(this), this);
         getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
         getServer().getPluginManager().registerEvents(new ChatHandler(this), this);
+        getServer().getPluginManager().registerEvents(new BookEditListener(this), this);
     }
 
     private void registerTabCompleters() {

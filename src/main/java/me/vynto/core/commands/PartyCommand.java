@@ -10,6 +10,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -54,7 +55,7 @@ public class PartyCommand implements CommandExecutor {
             }
 
             party = pManager.getPlayerParty(uuid);
-            party.sendMessage("&b" + player.getName() + ": &d" + StringUtils.join(args, " "));
+            party.sendMessage("&b" + ChatColor.stripColor(player.getDisplayName()) + ": &d" + StringUtils.join(args, " "));
             return true;
         }
 
@@ -97,24 +98,24 @@ public class PartyCommand implements CommandExecutor {
 
                     party = pManager.getPlayerParty(uuid);
                     if (party.getInvites().contains(invitee.getUniqueId())) {
-                        player.sendMessage(Utils.cc(prefix + "&cYou have already invited &e" + invitee.getName() + " &cto the party."));
+                        player.sendMessage(Utils.cc(prefix + "&cYou have already invited &e" + ChatColor.stripColor(invitee.getDisplayName()) + " &cto the party."));
                         return true;
                     }
                     if (party.getMembers().contains(invitee.getUniqueId())) {
-                        player.sendMessage(Utils.cc(prefix + "&e" + invitee.getName() + "&c is already in the party."));
+                        player.sendMessage(Utils.cc(prefix + "&e" + ChatColor.stripColor(invitee.getDisplayName()) + "&c is already in the party."));
                         return true;
                     }
 
                     party.addInvitee(invitee.getUniqueId());
 
-                    TextComponent message = new TextComponent(Utils.cc(prefix + "&6You have been invited to &d" + player.getName() + "'s &6party. &dCLICK HERE &6to join."));
+                    TextComponent message = new TextComponent(Utils.cc(prefix + "&6You have been invited to &d" + ChatColor.stripColor(player.getDisplayName()) + "'s &6party. &dCLICK HERE &6to join."));
                     message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/party accept " + player.getName()));
                     message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                             new ComponentBuilder("Click to join the party").create()
                     ));
                     invitee.spigot().sendMessage(message);
 
-                    party.sendMessage("&d" + player.getName() + " &6has invited &d" + invitee.getName() + " &6to the party");
+                    party.sendMessage("&d" + player.getName() + " &6has invited &d" + ChatColor.stripColor(invitee.getDisplayName()) + " &6to the party");
                 }
                 else {
                     player.sendMessage(Utils.cc(prefix + "&cUsage: &e/party invite <player>"));
@@ -143,7 +144,7 @@ public class PartyCommand implements CommandExecutor {
                 for (UUID invite : invites) {
                     OfflinePlayer pInvitee = Bukkit.getOfflinePlayer(invite);
                     if (pInvitee.isOnline()) {
-                        player.sendMessage(Utils.cc("&7- &6" + pInvitee.getName()));
+                        player.sendMessage(Utils.cc("&7- &6" + pInvitee.getPlayer().getDisplayName()));
                     }
                     else {
                         player.sendMessage(Utils.cc("&7- &6" + pInvitee.getName() + " &c(Offline)"));

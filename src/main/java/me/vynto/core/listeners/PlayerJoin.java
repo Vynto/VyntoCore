@@ -21,6 +21,7 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        event.getPlayer().sendMessage(Utils.cc("&6Welcome Back &d" + player.getDisplayName() + "&6!"));
 
         // Player Nickname
         String nickname = getPlayerDataValue(player, "nickname");

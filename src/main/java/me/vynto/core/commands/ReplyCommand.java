@@ -8,10 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.Arrays;
-
 public class ReplyCommand implements CommandExecutor {
-
     private VyntoCore plugin;
     public ReplyCommand(VyntoCore instance) {
         this.plugin = instance;
