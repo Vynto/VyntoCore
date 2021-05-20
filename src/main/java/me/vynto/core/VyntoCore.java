@@ -1,6 +1,7 @@
 package me.vynto.core;
 
 import me.vynto.core.base.PartyManager;
+import me.vynto.core.base.WarpManager;
 import me.vynto.core.commands.*;
 import me.vynto.core.listeners.*;
 import me.vynto.core.misc.Utils;
@@ -21,6 +22,7 @@ public class VyntoCore extends JavaPlugin {
 
     private Map<String, String> recipientHistory;
     private PartyManager partyManager;
+    private WarpManager warpManager;
     private String chatPrefix;
 
     private File data;
@@ -32,7 +34,10 @@ public class VyntoCore extends JavaPlugin {
         setChatPrefix();
 
         partyManager = new PartyManager();
+        warpManager = new WarpManager(this);
         recipientHistory = new HashMap<>();
+
+        warpManager.loadWarps();
 
         if (!getDataFolder().exists()) getDataFolder().mkdir();
 
@@ -75,6 +80,8 @@ public class VyntoCore extends JavaPlugin {
         getCommand("playertag").setExecutor(new TagCommand(this));
         getCommand("nickname").setExecutor(new NicknameCommand(this));
         getCommand("history").setExecutor(new BookHistoryCommand(this));
+        getCommand("warp").setExecutor(new WarpCommand(this));
+        getCommand("warps").setExecutor(new ReloadCommand(this));
     }
 
     private void registerEvents() {
@@ -166,6 +173,10 @@ public class VyntoCore extends JavaPlugin {
 
     public PartyManager getPartyManager() {
         return partyManager;
+    }
+
+    public WarpManager getWarpManager() {
+        return warpManager;
     }
 
     private void setChatPrefix() {

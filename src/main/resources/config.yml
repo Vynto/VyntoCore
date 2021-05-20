@@ -1,2 +1,16 @@
 # Vynto Core Config
 chatPrefix: "&f[&2Global&f] "
+
+warps:
+  "meltingfloor":
+    name: "melting_floor"
+    world: "world"
+    x: 335
+    y: 24
+    z: 157
+  "spawn":
+    name: "spawn"
+    world: "world"
+    x: 241
+    y: 4
+    z: 51

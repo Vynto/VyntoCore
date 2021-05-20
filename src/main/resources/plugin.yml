@@ -106,6 +106,14 @@ commands:
     usage: /history
     description: Get the edit history of the book you're holding.
     permission: vynto.core.history
+  warp:
+    usage: /warp <warp>
+    description: Warp to the target warp.
+    permission: vynto.core.warps
+  warps:
+    usage: /warps reload
+    description: Reload the Warps configuration.
+    permission: vynto.core.reload
 
 permissions:
   vynto.core.hat:
@@ -239,4 +247,10 @@ permissions:
     default: op
   vynto.core.history:
     description: Use the /history command
+    default: op
+  vynto.core.warps:
+    description: Use the /warp command
+    default: op
+  vynto.core.reload:
+    description: Use the /warps reload command
     default: op
